@@ -3,7 +3,7 @@
     static void Main()
     {
         Console.WriteLine("Please input the equilateral triangle perimeter");
-        double perimeter = Convert.ToDouble(Console.ReadLine());
+        double perimeter = double.Parse(Console.ReadLine());
         double side = perimeter / 3;
         double pHalved = perimeter / 2;
         double result = Math.Sqrt(pHalved * Math.Pow((pHalved - side), 3));
