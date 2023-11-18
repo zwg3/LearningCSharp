@@ -152,12 +152,9 @@ class Whatday
                 monthNum++;
             }
         }
-
     //End:
         MonthName temp = (MonthName)monthNum;
         string monthName = temp.ToString();
-
-
         //switch (monthNum)
         //{
         //    case 0:
@@ -187,11 +184,7 @@ class Whatday
         //    default:
         //        monthName = "not done yet"; break;
         //}
-
-
         Console.WriteLine("{0} {1}", dayNum, monthName);
-
-
     }
 
     static System.Collections.ICollection DaysInMonths
