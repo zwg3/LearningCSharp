@@ -1,6 +1,6 @@
 ﻿public enum AccountType { Checking, Depopsit };
 
-class BankAccount
+class Enum
 {
     static void Main()
     {
