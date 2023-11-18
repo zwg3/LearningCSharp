@@ -32,8 +32,7 @@
 
             double distance = Math.Sqrt(Math.Pow(shotX - targetX, 2) + Math.Pow(shotY - targetY, 2));
             double result = distance + difficultyScore;
-            Console.WriteLine(distance);
-            Console.WriteLine(result);
+
 
             if (result <= highScoreMargin) 
             {
@@ -56,6 +55,7 @@
             }
             rounds -= 1;
         }
+
         Console.WriteLine("Target was located at: X = {0} Y = {1}", targetX, targetY);
         Console.WriteLine("Final score: {0}", finalScore);
         Console.WriteLine("Shots taken: " + string.Join(", ", shots));
