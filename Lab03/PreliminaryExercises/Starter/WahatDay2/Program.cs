@@ -1,4 +1,4 @@
-﻿enum MonthName
+﻿internal enum MonthName
 {
     January,
     February,

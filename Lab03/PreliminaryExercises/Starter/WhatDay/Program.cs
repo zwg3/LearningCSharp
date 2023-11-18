@@ -1,4 +1,4 @@
-﻿enum MonthName 
+﻿internal enum MonthName
 {
     January,
     February,
@@ -140,7 +140,7 @@ class Whatday
         //    dayNum -= 31;
         //    monthNum++;
         //}
-        foreach (int daysInMonth in DaysInMonths) 
+        foreach (int daysInMonth in DaysInMonths)
         {
             if (dayNum <= daysInMonth)
             {
@@ -152,7 +152,7 @@ class Whatday
                 monthNum++;
             }
         }
-    //End:
+        //End:
         MonthName temp = (MonthName)monthNum;
         string monthName = temp.ToString();
         //switch (monthNum)
