@@ -29,8 +29,9 @@ class Program
         if (thirdSegment.inch > 12)
         {
             thirdSegment.foot++;
-            thirdSegment.inch = thirdSegment.inch % 12;
+            thirdSegment.inch %= 12;
         }
+
         else{}
 
         Console.WriteLine("The sum of both segments is: {0} '- {1}", thirdSegment.foot, thirdSegment.inch);
