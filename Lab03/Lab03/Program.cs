@@ -3,18 +3,10 @@
     static void Main()
     {
         Random randNum = new Random();
-        int targetX = randNum.Next(-50, 50);
-        int targetY = randNum.Next(-50, 50);
-        
-
-        int highScoreMargin = 10;
-        int midScoreMargin = 20;
-        int lowScoreMargin = 30;
-
+        int targetX = randNum.Next(-50, 50), targetY = randNum.Next(-50, 50);
+        int highScoreMargin = 10, midScoreMargin = 20, lowScoreMargin = 30;
         var shots = new List<Tuple<double, double>>();
-
         int finalScore = 0;
-
 
         Console.WriteLine("Please enter how many rounds you would like to play for");
         short rounds = short.Parse(Console.ReadLine());
