@@ -37,17 +37,17 @@
             if (result <= highScoreMargin) 
             {
                 Console.WriteLine("HIGHSCORE!");
-                finalScore += 14 + Math.Abs(difficultyScore);
+                finalScore += 14 + difficultyScore;
             }
             else if (result <= midScoreMargin) 
             {
                 Console.WriteLine("MIDSCORE");
-                finalScore += 7 + Math.Abs(difficultyScore);
+                finalScore += 7 + difficultyScore;
             }
             else if (result <= lowScoreMargin)
             {
                 Console.WriteLine("LOWSCORE");
-                finalScore += 3 + Math.Abs(difficultyScore);
+                finalScore += 3 + difficultyScore;
             }
             else
             {
