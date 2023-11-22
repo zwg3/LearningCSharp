@@ -1,8 +1,11 @@
 ﻿class Program
 {
-    public static double Calc(double a, double b, double c, ref double x1, ref double x2)
+    public static double Calc(double a, double b, double c, out double x1, out double x2)
     {
+        x1 = 0;
+        x2 = 0;
         double d = (b * b) - (4 * a * c);
+
         if (d < 0)
         {
             return -1;
@@ -23,8 +26,7 @@
 
     public static void Main()
     {
-        double x1 = 0;
-        double x2 = 0;
+
         Console.Write("Please enter the first coeficient: ");
         double a = Convert.ToInt32(Console.ReadLine());
         Console.Write("Please enter the second coeficient: ");
@@ -33,11 +35,11 @@
         double c = Convert.ToInt32(Console.ReadLine());
 
 
-        if (Calc(a, b, c, ref x1, ref x2) == -1)
+        if (Calc(a, b, c, out double x1, out double x2) == -1)
         {
             Console.WriteLine("There were no roots found using the following coeficients: a = {0}, b = {1}, c = {2}", a, b, c);
         }
-        else if (Calc(a, b, c, ref x1, ref x2) == 0)
+        else if (Calc(a, b, c, out x1, out x2) == 0)
         {
             Console.WriteLine("One root was found using the following coeficients: a = {0}, b = {1}, c = {2}, x1 = {3} = x2 = {4}", a, b, c, x1, x2);
         }
