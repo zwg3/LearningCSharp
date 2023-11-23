@@ -7,7 +7,6 @@
         double x2 = 0;
         double flag;
 
-
         if (d < 0)
         {
             flag = -1;
