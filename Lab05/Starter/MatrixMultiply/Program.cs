@@ -8,7 +8,6 @@
         Input(a);
         Input(b);
 
-
         int[,] result = Multiply(a, b);
 
         Output(result);
@@ -16,7 +15,6 @@
 
     private static void Input(int[,] a)
     {
-
         for (int r = 0; r < a.GetLength(0); r++)
         {
             for (int c = 0; c < a.GetLength(1); c++)
