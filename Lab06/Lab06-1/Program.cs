@@ -1,19 +1,20 @@
 ﻿class Triangle
 {
-    double sideA;
-    double sideB;
-    double sideC;
+    public double sideA;
+    public double sideB;
+    public double sideC;
+}
 
+class Program { 
     public static void Main()
     {
-        Triangle triangle = new();
-        triangle.GetTriangle();
+        Triangle triangle  = GetTriangle();
 
-        if (IsTriangle(triangle.sideA, triangle.sideB, triangle.sideC)==true)
+        if (IsTriangle(triangle) == true)
         {
             Console.WriteLine("This is a triangle!");
-            Console.WriteLine("The perimeter is: {0:0.00}", GetPerimeter(triangle.sideA, triangle.sideB, triangle.sideC));
-            Console.WriteLine("The area is: {0:0.00}", GetArea(triangle.sideA, triangle.sideB, triangle.sideC));
+            Console.WriteLine("The perimeter is: {0:0.00}", GetPerimeter(triangle));
+            Console.WriteLine("The area is: {0:0.00}", GetArea(triangle));
             Console.WriteLine("Side A is: {0:0.00}\nSide B is: {0:0.00}\nSide C is: {0:0.00}\n", triangle.sideA, triangle.sideB, triangle.sideC);
         }
         else
@@ -22,30 +23,35 @@
         }
     }
 
-    public void GetTriangle()
+    public static Triangle GetTriangle()
     {
+        Triangle created = new();
+
         Console.Write("Please enter side A: ");
-        sideA = double.Parse(Console.ReadLine());
+        created.sideA = double.Parse(Console.ReadLine());
         Console.Write("Please enter side B: ");
-        sideB = double.Parse(Console.ReadLine());
+        created.sideB = double.Parse(Console.ReadLine());
         Console.Write("Please enter side C: ");
-        sideC = double.Parse(Console.ReadLine());
+        created.sideC = double.Parse(Console.ReadLine());
+
+        return created;
     }
 
-    public static double GetPerimeter(double a, double b, double c)
+    public static double GetPerimeter(Triangle data)
     {
-        return a + b + c;
+        return data.sideA + data.sideB + data.sideC;
     }
 
-    public static double GetArea(double a, double b, double c)
+    public static double GetArea(Triangle data)
     {
-        double p = GetPerimeter(a, b, c) / 2;
-        return Math.Sqrt(p * (p - a) * (p - b) * (p - c));
+        double p = GetPerimeter(data) / 2;
+        return Math.Sqrt(p * (p - data.sideA) * (p - data.sideB) * (p - data.sideC));
     }
 
-    public static bool IsTriangle(double a, double b, double c)
+    public static bool IsTriangle(Triangle data)
     {
-        if (a + b <= c || a + c <= b || b + c <= a)
+
+        if (data.sideA + data.sideB <= data.sideC || data.sideA + data.sideC <= data.sideB || data.sideB + data.sideC <= data.sideA)
             return false;
         else
             return true;
