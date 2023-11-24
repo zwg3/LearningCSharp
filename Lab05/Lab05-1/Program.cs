@@ -1,6 +1,6 @@
 ﻿class Program
 {
-    public static (double, double, double) Calc (double a, double b, double c)
+    public static (double firstX, double secondX, double theFlag) Calc (double a, double b, double c)
     {            
         double d = (b * b) - (4 * a * c);
         double x1 = 0;
@@ -27,7 +27,7 @@
 
         }
 
-        var result = (x1, x2, flag);
+        (double firstX, double secondX, double theFlag) result = (x1, x2, flag);
 
         return result;
     }
@@ -44,17 +44,17 @@
 
         var result = Calc(a, b, c);
 
-        if (result.Item3 == -1)
+        if (result.theFlag == -1)
         {
             Console.WriteLine("There were no roots found using the following coeficients: a = {0}, b = {1}, c = {2}", a, b, c);
         }
-        else if (result.Item3 == 0)
+        else if (result.theFlag == 0)
         {
-            Console.WriteLine("One root was found using the following coeficients: a = {0}, b = {1}, c = {2}, x = {3}", a, b, c, result.Item1);
+            Console.WriteLine("One root was found using the following coeficients: a = {0}, b = {1}, c = {2}, x = {3}", a, b, c, result.firstX);
         }
         else
         {
-            Console.WriteLine("Two roots were found using the following coeficients: a = {0}, b = {1}, c = {2}, x1 = {3}, x2 = {4}", a, b, c, result.Item1, result.Item2);
+            Console.WriteLine("Two roots were found using the following coeficients: a = {0}, b = {1}, c = {2}, x1 = {3}, x2 = {4}", a, b, c, result.firstX, result.secondX);
         }
     }
 }

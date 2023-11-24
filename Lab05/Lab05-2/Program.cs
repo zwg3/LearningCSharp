@@ -33,12 +33,12 @@
         Console.WriteLine("The average of entered numbers is: {0:0.00}", result);
     }
 
-    private static void OutputPosNegSum((double, double) result)
+    private static void OutputPosNegSum((double posSum, double negSum) result)
 
     {
         Console.WriteLine("The sum of positive numbers is:  {0:0.00}\n" +
                           "The sum of negative numbers is: {1:0.00}"
-                          , result.Item1, result.Item2);
+                          , result.posSum, result.negSum);
     }
 
     private static void OutputEvenOddSum((double, double) result)
@@ -49,22 +49,22 @@
                           , result.Item1, result.Item2);
     }
 
-    private static void OutputMinMax((double, double, double, double) result)
+    private static void OutputMinMax((int minIndex, int maxIndex, double min, double max) result)
 
     {
         Console.WriteLine("The index of the maximal value number is: {0}\n" +
                           "The index of the minimal value number is: {1}"
-                          , result.Item2, result.Item1);
+                          , result.maxIndex, result.minIndex);
     }
 
-    private static void OutputMultiplyBetween((double, int, int, double, double) result)
+    private static void OutputMultiplyBetween((double multiplyResult, int minIndex, int maxIndex, double minValue, double maxValue) result)
 
     {
 
         Console.WriteLine("The minimal value is {0:0.00} with an index of {1}\n" +
             "The maximal value is {2:0.00} with an index of {3}\n" +
             "The miltiplication of the numbers in between of them results in {4:0.00}",
-            result.Item4, result.Item2, result.Item5, result.Item3, result.Item1);
+            result.minValue, result.minIndex-1, result.maxValue, result.maxIndex, result.multiplyResult);
     }
     private static double Sum(double[] numsArray)
     {
@@ -88,7 +88,7 @@
         return result;
     }
 
-    private static (double, double) PosNegSum(double[] numsArray)
+    private static (double posSum, double negSum) PosNegSum(double[] numsArray)
     {
         
         double posSum = 0;
@@ -105,7 +105,7 @@
                 negSum += i;
             }            
         }
-        var result = (posSum, negSum);
+        (double posSum, double negSum) result = (posSum, negSum);
         return result;
     }
 
@@ -130,7 +130,7 @@
         return result;
     }
 
-    private static (int, int, double, double) MinMax(double[] numsArray)
+    private static (int minIndex, int maxIndex, double min, double max) MinMax(double[] numsArray)
     {
         double min = numsArray[0];
         double max = numsArray[0];
@@ -150,26 +150,27 @@
         int minIndex = Array.IndexOf(numsArray, min);
         int maxIndex = Array.IndexOf(numsArray, max);
 
-        var result = (minIndex, maxIndex, min, max);
+        (int minIndex, int maxIndex, double min, double max) result = (minIndex, maxIndex, min, max);
 
         return result;
     }
 
-    private static (double, int, int, double, double) MultiplyBetween((int, int, double, double) minMaxTuple, double[]numsArray)
+    private static (double multiplyResult, int minIndex, int maxIndex, double minValue, double maxValue) MultiplyBetween(
+        (int minIndex, int maxIndex, double min, double max) minMaxTuple, double[]numsArray)
     {
         double multiplyResult = 1;
-        int minIndex = minMaxTuple.Item1+1;
-        int maxIndex = minMaxTuple.Item2;
-        double minValue = minMaxTuple.Item3;
-        double maxValue = minMaxTuple.Item4;
+        int minIndex = minMaxTuple.minIndex + 1;
+        int maxIndex = minMaxTuple.maxIndex;
+        double minValue = minMaxTuple.min;
+        double maxValue = minMaxTuple.max;
         Range range = minIndex..maxIndex;
 
         foreach (int i in numsArray[range])
         {
             multiplyResult *= i;
-        }      
+        }
+        (double multiplyResult, int minIndex, int maxIndex, double minValue, double maxValue) result = (multiplyResult, minIndex, maxIndex, minValue, maxValue);
 
-        var result = (multiplyResult, minIndex, maxIndex, minValue, maxValue);
         return result;
     }
 
