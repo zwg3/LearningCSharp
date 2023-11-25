@@ -3,42 +3,38 @@
     public double sideA;
     public double sideB;
     public double sideC;
-    public Triangle GetTriangle()
+    public void GetTriangle()
     {
-        Triangle created = new();
 
         Console.Write("Please enter side A: ");
-        created.sideA = double.Parse(Console.ReadLine());
+        sideA = double.Parse(Console.ReadLine());
         Console.Write("Please enter side B: ");
-        created.sideB = double.Parse(Console.ReadLine());
+        sideB = double.Parse(Console.ReadLine());
         Console.Write("Please enter side C: ");
-        created.sideC = double.Parse(Console.ReadLine());
-
-        return created;
+        sideC = double.Parse(Console.ReadLine());
     }
-
-    public void GetPerimeter(Triangle data)
+    public void GetPerimeter()
     {
-        double result = data.sideA + data.sideB + data.sideC;
+        double result = sideA + sideB + sideC;
         Console.WriteLine("The perimeter is: {0:0.00}", result);
     }
-    public void GetArea(Triangle data)
+    public void GetArea()
     {
-        double p = (data.sideA + data.sideB + data.sideC) / 2;
-        double result = Math.Sqrt(p * (p - data.sideA) * (p - data.sideB) * (p - data.sideC));
+        double p = (sideA + sideB + sideC) / 2;
+        double result = Math.Sqrt(p * (p - sideA) * (p - sideB) * (p - sideC));
         Console.WriteLine("The area is: {0:0.00}", result);
     }
-    public void IsTriangle(Triangle data)
+    public void IsTriangle()
     {
 
-        if (data.sideA + data.sideB <= data.sideC || data.sideA + data.sideC <= data.sideB || data.sideB + data.sideC <= data.sideA)
+        if (sideA + sideB <= sideC || sideA + sideC <= sideB || sideB + sideC <= sideA)
             Console.WriteLine("This is not a triangle!");
         else
             Console.WriteLine("This is a triangle!");
     }
-    public void PrintSides(Triangle data)
+    public void PrintSides()
     {
-        Console.WriteLine("Side A is: {0:0.00}\nSide B is: {0:0.00}\nSide C is: {0:0.00}\n", data.sideA, data.sideB, data.sideC);
+        Console.WriteLine("Side A is: {0:0.00}\nSide B is: {0:0.00}\nSide C is: {0:0.00}\n", sideA, sideB, sideC);
     }
 }
 class Program
@@ -47,11 +43,11 @@ class Program
     {
         Triangle created = new();
 
-        Triangle data = created.GetTriangle();
-        created.IsTriangle(data);
-        created.GetPerimeter(data);
-        created.GetArea(data);
-        created.PrintSides(data);
+        created.GetTriangle();        
 
+        created.IsTriangle();
+        created.GetPerimeter();
+        created.GetArea();
+        created.PrintSides();
     }
 }
