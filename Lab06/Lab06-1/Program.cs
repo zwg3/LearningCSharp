@@ -3,7 +3,7 @@
     public double sideA;
     public double sideB;
     public double sideC;
-    public static Triangle GetTriangle()
+    public Triangle GetTriangle()
     {
         Triangle created = new();
 
@@ -17,18 +17,18 @@
         return created;
     }
 
-    public static void GetPerimeter(Triangle data)
+    public void GetPerimeter(Triangle data)
     {
         double result = data.sideA + data.sideB + data.sideC;
         Console.WriteLine("The perimeter is: {0:0.00}", result);
     }
-    public static void GetArea(Triangle data)
+    public void GetArea(Triangle data)
     {
         double p = (data.sideA + data.sideB + data.sideC) / 2;
         double result = Math.Sqrt(p * (p - data.sideA) * (p - data.sideB) * (p - data.sideC));
         Console.WriteLine("The area is: {0:0.00}", result);
     }
-    public static void IsTriangle(Triangle data)
+    public void IsTriangle(Triangle data)
     {
 
         if (data.sideA + data.sideB <= data.sideC || data.sideA + data.sideC <= data.sideB || data.sideB + data.sideC <= data.sideA)
@@ -36,7 +36,7 @@
         else
             Console.WriteLine("This is a triangle!");
     }
-    public static void PrintSides(Triangle data)
+    public void PrintSides(Triangle data)
     {
         Console.WriteLine("Side A is: {0:0.00}\nSide B is: {0:0.00}\nSide C is: {0:0.00}\n", data.sideA, data.sideB, data.sideC);
     }
@@ -45,12 +45,13 @@ class Program
 {
     public static void Main()
     {
-        Triangle created = Triangle.GetTriangle();
+        Triangle created = new();
 
-        Triangle.IsTriangle(created);
-        Triangle.GetPerimeter(created);
-        Triangle.GetArea(created);
-        Triangle.PrintSides(created);
+        Triangle data = created.GetTriangle();
+        created.IsTriangle(data);
+        created.GetPerimeter(data);
+        created.GetArea(data);
+        created.PrintSides(data);
 
     }
 }
