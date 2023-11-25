@@ -1,10 +1,12 @@
-﻿class Triangle
+﻿using System.Reflection.Metadata.Ecma335;
+
+class Triangle
 {
     public double sideA;
     public double sideB;
     public double sideC;
 
-    public void GetTriangle()
+    public void CreateTriangle()
     {
         Console.Write("Please enter side A: ");
         sideA = double.Parse(Console.ReadLine());
@@ -14,31 +16,27 @@
         sideC = double.Parse(Console.ReadLine());
     }
 
-    public void GetPerimeter()
+    public double GetPerimeter()
     {
         double result = sideA + sideB + sideC;
-        Console.WriteLine("The perimeter is: {0:0.00}", result);
+        return result;
     }
 
-    public void GetArea()
+    public double GetArea()
     {
         double p = (sideA + sideB + sideC) / 2;
         double result = Math.Sqrt(p * (p - sideA) * (p - sideB) * (p - sideC));
-        Console.WriteLine("The area is: {0:0.00}", result);
+        return result;
+
     }
 
-    public void IsTriangle()
+    public bool IsTriangle()
     {
 
         if (sideA + sideB <= sideC || sideA + sideC <= sideB || sideB + sideC <= sideA)
-            Console.WriteLine("This is not a triangle!");
+            return false;
         else
-            Console.WriteLine("This is a triangle!");
-    }
-
-    public void PrintSides()
-    {
-        Console.WriteLine("Side A is: {0:0.00}\nSide B is: {0:0.00}\nSide C is: {0:0.00}\n", sideA, sideB, sideC);
+            return true;
     }
 }
 class Program
@@ -47,11 +45,20 @@ class Program
     {
         Triangle created = new();
 
-        created.GetTriangle();        
+        created.CreateTriangle();
+        
+        if (created.IsTriangle())
+        {
+            Console.WriteLine("This is a triangle!");
+            Console.WriteLine("The perimeter is: {0:0.00}", created.GetPerimeter());
+            Console.WriteLine("The area is: {0:0.00}", created.GetArea());
+        }
+        else
+        {
+            Console.WriteLine("This is not a triangle!");
+        }
 
-        created.IsTriangle();
-        created.GetPerimeter();
-        created.GetArea();
-        created.PrintSides();
+        Console.WriteLine("Side A is: {0:0.00}\nSide B is: {1:0.00}\nSide C is: {2:0.00}\n", created.sideA, created.sideB, created.sideC);
+
     }
 }
