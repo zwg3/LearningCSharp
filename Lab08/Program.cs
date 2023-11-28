@@ -4,12 +4,13 @@
     private double sideB;
     private double sideC;
 
-    public void CreateTriangle(double length)
+
+    public Triangle(double a)
     {
-        sideA = sideB = sideC = length;
+        sideA = sideB = sideC = a;
     }
 
-    public void CreateTriangle(double a, double b, double c)
+    public Triangle(double a, double b, double c)
     {
         sideA = a;
         sideB = b;
@@ -66,20 +67,14 @@ class Program
 {
     public static void Main()
     {
-        Triangle t1 = new();
-        Triangle t2 = new();
-        Triangle t3 = new();
+        Triangle[] triangles = [new Triangle(3), new Triangle(3, 4, 5), new Triangle(10, 4, 9)];
 
-        t1.CreateTriangle(3);
-        t2.CreateTriangle(3,4,5);
-        t3.CreateTriangle(10,4,9);
-
-        Triangle[] triangles = { t1, t2, t3 };
         Array.Sort(triangles);
 
         foreach (Triangle i in triangles)
         {
-            Console.WriteLine("Side A: {0:0.000}, Side B: {1:0.000}, Side C: {2:0.000}, Area: {3:0.000}", i.GetSides().A, i.GetSides().B, i.GetSides().C, i.GetArea());
+            Console.WriteLine("Side A: {0:0.00}, Side B: {1:0.00}, Side C: {2:0.00}, Area: {3:0.00}",
+            i.GetSides().A, i.GetSides().B, i.GetSides().C, i.GetArea());
         }
     }
 }
