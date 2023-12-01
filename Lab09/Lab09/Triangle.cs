@@ -1,35 +1,61 @@
 ﻿
 namespace Lab09
 {
-    class Triangle : Shape
+    class Triangle : Shape, IRotate
 
     {
-        private Shape[] vertices;
+        private (double x, double y) verticeA { get; set; } 
+        private (double x, double y) verticeB { get; set; }
+        private (double x, double y) verticeC { get; set; }
 
-        public Triangle(Shape a, Shape b, Shape c) : base((a.xVal + b.xVal + c.xVal), (a.yVal + b.yVal + c.yVal))
-
+        public Triangle((double x, double y) a, (double x, double y) b, (double x, double y) c)
         {
-            vertices = new Shape[3];
-            vertices[0] = a;
-            vertices[1] = b;
-            vertices[2] = c;
+            this.verticeA = a;
+            this.verticeB = b;
+            this.verticeC = c;
         }
-        public void PrintTriangle()
+                
+        public override string ToString()
         {
-            Console.WriteLine("Vertices:");
-            for (int i = 0; i < vertices.Length; i++)
+            return $"Triangle data: Verticle A - {verticeA}\tVerticle B - {verticeB}\tVertice C - {verticeC}\t";
+        }
+
+        public (double sideA, double sideB, double sideC) GetSides()
+        {
+            double sideA = Math.Sqrt(Math.Pow(verticeA.x - verticeB.x, 2) + Math.Pow(verticeA.y - verticeB.y, 2));
+            double sideB = Math.Sqrt(Math.Pow(verticeA.x - verticeC.x, 2) + Math.Pow(verticeA.y - verticeC.y, 2));
+            double sideC = Math.Sqrt(Math.Pow(verticeB.x - verticeC.x, 2) + Math.Pow(verticeB.y - verticeC.y, 2));
+
+            return new(sideA, sideB, sideC);
+        }
+
+        public override double GetPerimeter()
+        {
+            (double sideA, double sideB, double sideC) sides = GetSides();
+            return sides.sideA + sides.sideB + sides.sideC;
+        }
+        public override double GetArea()
+        {
+            return (verticeA.x * (verticeB.y - verticeC.y) + verticeB.x*(verticeC.y - verticeA.y) + verticeC.x*(verticeA.y - verticeB.y))/2;
+        }
+        public void Rotate(int angle)
+        {
+            Console.WriteLine("The triangle has been rotated {0} degrees\n", angle);
+        }
+        public override string IsValid()
+        {
+            (double sideA, double sideB, double sideC) sides = GetSides();
+
+            bool res = (sides.sideA + sides.sideB > sides.sideC) &&
+                       (sides.sideA + sides.sideC > sides.sideB) &&
+                       (sides.sideC + sides.sideB > sides.sideA);
+
+            if (res)
             {
-                vertices[i].PrintCoordinate();
+                return "valid";
             }
+            return "not valid";
         }
-        public Triangle BuildTriangle()
-        {
-            Shape a = new(1, 2);
-            Shape b = new(2, 3);
-            Shape c = new(3, 4);
 
-            Triangle t = new(a, b, c);
-            return t;        
-        }
     }
 }
